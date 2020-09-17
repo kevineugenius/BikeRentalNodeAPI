@@ -1,6 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 var http = require('http')
+const { report } = require('process')
+
+app.use(cors())
 
 const options = {
   host: 'localhost',
@@ -46,16 +50,13 @@ app.get('/api/BikeData', (req, res) => {
 app.get('/', (req, res) => res.send({
   server: {
     name: 'API Starter Server',
+    attribution: {},
     apiVersion: '0.2'
   },
   availableDataSeries: {
-    increasingData: {
-      name: 'Increasing data values',
-      description: 'Numbers 1 to 5'
-    },
-    flatData: {
-      name: 'Flat data values',
-      description: 'Just the number 5'
+    BikeData: {
+      name: 'Bike Rental Count',
+      description: 'Displays indexed list of bike rental historical data'
     }
   }
 }))
